@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
   #エンドユーザー側のルーティング
+
     root 'homes#top'
 
     get 'about', to: 'homes#about', as: 'about'
@@ -19,13 +20,14 @@ Rails.application.routes.draw do
       patch 'information', to: 'customers#update'
       get 'confirm_leave', to: 'customers#confirm_leave'
       patch 'leave', to: 'customers#leave'
-    end
-
+    end 
+    
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
         delete 'destroy_all', to: 'cart_items#destroy_all'
       end
     end
+
 
     resources :orders, only: [:new, :create, :index, :show] do
       post 'confirm_order', to: 'orders#confirm_order', as: 'confirm_order'
