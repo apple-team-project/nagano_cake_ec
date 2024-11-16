@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-    # devise_for :customers, path: '', controllers: {
-    #   registrations: 'public/registrations',
-    #   sessions: 'public/sessions'
-    # }
+    devise_for :customers, path: '', controllers: {
+      registrations: 'public/registrations',
+      sessions: 'public/sessions'
+    }
 
     resource :customers, only: [] do
       get 'mypage', to: 'customers#show'
@@ -41,9 +41,9 @@ Rails.application.routes.draw do
   #管理者側のルーティング
     root 'homes#top'
 
-    # devise_for :admins, controllers: {
-    #   sessions: 'admin/sessions'
-    # }
+    devise_for :admins, controllers: {
+      sessions: 'admin/sessions'
+    }
 
     resources :items, except: [:destroy]
 
