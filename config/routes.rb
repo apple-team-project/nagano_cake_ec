@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  devise_for :customers, skip: [:passwords], controllers: {
+      registrations: 'public/registrations',
+      sessions: 'public/sessions'
+  }
+
   scope module: :public do
   #エンドユーザー側のルーティング
     root 'homes#top'
@@ -8,17 +13,13 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-    devise_for :customers, path: '', controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions'
-    }
-
     resource :customers, only: [] do
       get 'mypage', to: 'customers#show'
       get 'information/edit', to: 'customers#edit'
       patch 'information', to: 'customers#update'
       get 'confirm_leave', to: 'customers#confirm_leave'
       patch 'leave', to: 'customers#leave'
+    end
 
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
@@ -35,13 +36,13 @@ Rails.application.routes.draw do
 
   end
 
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+      sessions: 'admin/sessions'
+  }
+
   namespace :admin do
   #管理者側のルーティング
     root 'homes#top'
-
-    devise_for :admins, controllers: {
-      sessions: 'admin/sessions'
-    }
 
     resources :items, except: [:destroy]
 
