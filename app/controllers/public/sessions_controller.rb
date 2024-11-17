@@ -19,11 +19,13 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  def after_path_for(resource)
+  def after_sign_in_path_for(resource)
     items_path
   end 
   
-  
+  def after_sign_out_path_for(resource)
+    "/"
+  end  
 
   # protected
 
