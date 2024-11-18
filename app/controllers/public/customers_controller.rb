@@ -20,6 +20,13 @@ class Public::CustomersController < ApplicationController
   end
 
   def leave
+    customer = current_customer
+    if customer.update(is_active: false)
+      reset_session
+      redirect_to root_path
+    else
+      render :confirm_leave
+    end
   end
 
   private
