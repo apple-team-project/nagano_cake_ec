@@ -9,8 +9,9 @@ class Customer < ApplicationRecord
   def full_name
     "#{family_name} #{first_name}"
   end 
+       
+  def address_all
+    "〒" + post_code + " " + address
+  end
 
-  
-  
-  
 end
