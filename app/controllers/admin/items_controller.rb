@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
   end   
 
   def index
-    @items=Item.includes(:genre).order(created_at: :desc).page(params[:page]).per(10)
+    @items=Item.includes(:genre).order(created_at: :asc).page(params[:page]).per(10)
   end   
 
 
