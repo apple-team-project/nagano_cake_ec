@@ -1,5 +1,20 @@
 class Admin::ItemsController < ApplicationController
 
+  def new
+    @item=Item.new 
+  end
+  
+  def create
+    item=Item.new(item_params)
+    item.save
+    redirect_to admin_item_path(item)
+  end   
+
+  def index
+    @items=Item.includes(:genre).order(created_at: :desc).page(params[:page]).per(10)
+  end   
+
+
   def show
     @item=Item.includes(:genre).find(params[:id])
     @genre=@item.genre
