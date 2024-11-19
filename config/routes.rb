@@ -30,8 +30,10 @@ Rails.application.routes.draw do
 
 
     resources :orders, only: [:new, :create, :index, :show] do
-      post 'confirm_order', to: 'orders#confirm_order', as: 'confirm_order'
-      get 'complete_order', to: 'orders#complete_order', as: 'complete_order'
+      collection do
+        post 'confirm_order', to: 'orders#confirm_order', as: 'confirm_order'
+        get 'complete_order', to: 'orders#complete_order', as: 'complete_order'
+      end
     end
 
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
