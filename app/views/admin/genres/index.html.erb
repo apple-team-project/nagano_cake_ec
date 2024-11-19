@@ -1,13 +1,13 @@
 <h4>ジャンル一覧・追加</h4>
-<%=render "form",genre: @genre %>
-<tabel>
-<tr>
-<th colspan="2">ジャンル名</th>
-</tr>
-<% @genres.each do |genre| %>
-<tr>
-<td><%=genre.name %></td>
-<td><%=link_to "編集する",edit_admin_genre_path(genre),class: "btn" %></td>
-</tr>
-<% end %>
-</tabel>
+<%= render "form",genre: @genre %>
+<table>
+  <tr>
+    <th colspan="2">ジャンル名</th>
+  </tr>
+  <% @genres.each do |genre| %>
+  <tr>
+    <td><%= genre.name %></td>
+    <td><%= link_to "編集する",edit_admin_genre_path(genre),class: "btn" %></td>
+  </tr>
+  <% end %>
+</table>
