@@ -4,7 +4,7 @@
       ショッピングカート
     </div>
     <div class="col">
-      <%= link_to "カートを空にする", destroy_all_cart_items_path, class: "btn btn-danger" %>
+      <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
   <table class="table table-bordered">
