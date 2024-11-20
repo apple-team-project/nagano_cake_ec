@@ -1,0 +1,69 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- ロゴ -->
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo.png", alt: "ロゴ", height: "120" %>
+      <% end %>
+
+      <!-- トグルボタン (レスポンシブ対応) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- ナビゲーション -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav">
+          <% if current_admin %> <!-- Adminログイン時 -->
+            <li class="nav-item">
+              <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger mx-3" %>
+            </li>
+
+          <% elsif current_customer %> <!-- Publicログイン時 -->
+            <li class="nav-item">
+              <span class="navbar-text me-3">ようこそ、<%= current_customer.family_name %>さん！</span>
+            </li>
+            <li class="nav-item">
+              <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "商品一覧", items_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "カート", cart_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger mx-3" %>
+            </li>
+
+          <% else %> <!-- ログアウト時（共通表示） -->
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: "btn btn-outline-secondary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-primary mx-3" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
