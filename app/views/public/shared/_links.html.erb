@@ -1,13 +1,12 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<span style="background-color: rgba(226,226,226,0.8); font-size: 1.5em; padding: 0 20px; margin-left: 50px;">既に登録済みの方</span><br>
+  <%= link_to "こちら", new_session_path(resource_name),style: "margin-left: 90px" %>からログインしてください。<br />
 <% end %>
+
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<span style="background-color: rgba(226,226,226,0.8); font-size: 1.1em; padding: 0 20px; margin-left: 70px;">会員登録がお済みでない方</span><br>
+  <%= link_to "こちら", new_registration_path(resource_name),style: "margin-left: 90px" %>からログインしてください。<br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
