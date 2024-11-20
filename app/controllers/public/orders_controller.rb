@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = current_customer.orders.build(order_params)
+    @order = current_customer.orders.build
   end
 
   def create
@@ -31,7 +31,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm_order
-    @order = current_customer.orders.build(order_params)
+    @order = current_customer.orders.build(order_params.except(:address_id, :address_select))
     @order.shipping_fee = 800 # 送料の設定の流れが不明だったため、仮で800円に設定
     @cart_items = current_customer.cart_items.includes(:item)
     case params[:order][:address_select]
@@ -58,6 +58,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :post_code, :address, :name, :address_id, :address_select)
+    params.require(:order).permit(:payment_method, :post_code, :address, :name, :shipping_fee, :total_payment)
   end
 end

@@ -1,9 +1,9 @@
 <div>注文情報入力</div>
 
-<%= form_with model: @order, url: order_confirm_order_path, method: :post do |f| %>
+<%= form_with model: @order, url: confirm_order_orders_path, method: :post do |f| %>
   <div>
     <h5>支払方法</h5>
-    <%= f.rodio_button :payment_method, Order_payment_methods.key(0) %>
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
     <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
     <%= f.label :payment_method_cash, Order.payment_methods_i18n[:cash] %>
