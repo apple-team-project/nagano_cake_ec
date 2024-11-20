@@ -5,4 +5,13 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy       
+
+  def full_name
+    "#{family_name} #{first_name}"
+  end 
+       
+  def address_all
+    "〒" + post_code + " " + address
+  end
+
 end
