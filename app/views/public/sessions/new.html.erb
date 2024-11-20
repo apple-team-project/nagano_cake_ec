@@ -1,26 +1,32 @@
-<h2>Log in</h2>
+<div class="container">
+<div class="row">
+ <div class="col-md-8 mt-4">
+  <span style="background-color: rgba(226,226,226,0.8); font-size: 1.4em; padding: 0 20px; margin-left: 50px;">ログイン</span><br><br>
+  <span style="background-color: rgba(226,226,226,0.8); font-size: 1.1em; padding: 0 20px; margin-left: 70px;">会員の方はこちらからログイン</span>
+  <%= form_with(model: resource, url: session_path(resource_name), local: true) do |f| %>
+  <table class="mt-3 w-100">
+    <tr>
+      <td align="center"><%= f.label :email,"メールアドレス" %></td>
+      <td colspan="5"><%= f.email_field :email, autofocus: true, autocomplete: "email",class: "w-75",placeholder: "sample@example.com" %></td>
+    </tr>
 
-<%= form_with(model: resource, url: session_path(resource_name), local: true) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <tr>
+      <td align="center"><%= f.label :password,"パスワード" %></td>
+      <td colspan="5"><%= f.password_field :password, autocomplete: "current-password",class: "w-75" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <tr>
+      <td></td>
+      <td><%= f.submit "ログイン",class: "btn btn-primary mt-4 mb-5 w-50" %></td>
+    </tr>
+    </table>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+    
 <% end %>
+
+<%= render "public/shared/links" %>
+</div>
+</div>
+</div>
 
 
