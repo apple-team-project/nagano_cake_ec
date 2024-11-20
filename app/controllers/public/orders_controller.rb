@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.includes(order_details: :items)
+    @orders = current_customer.orders.includes(order_details: :item)
   end
 
   def show
