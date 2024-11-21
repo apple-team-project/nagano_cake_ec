@@ -25,8 +25,8 @@
   <tr>
     <th class="p-1">注文ステータス</th>
     <td class="p-1">
-      <%= form_with(model: @order, url: admin_order_path(@order), method: :patch, local: true) do |f| %>
-        <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] }, { selected: I18n.t("enums.order.status.#{@order.status}") } %>
+      <%= form_with(model: @order, url: admin_order_path(@order),method: :patch) do |f| %>
+        <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] }, { selected: @order.status } %>
         <%= f.submit '更新',class: "btn btn-success" %>
       <% end %>
     </td>
@@ -54,7 +54,7 @@
         <td class="p-2"><%= detail.amount %></td>
         <td class="p-2"><%=number_with_delimiter(detail.subtotal) %></td>
         <td class="p-2">
-          <%= form_with model: detail, url: admin_order_detail_path(detail), local: true, method: :patch do |f| %>
+          <%= form_with model: detail, url: admin_order_detail_path(detail),method: :patch do |f| %>
           <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |s| [I18n.t("enums.order_details.making_status.#{s}"), s] }, {}, class: "form-control" %>
         </td>  
         <td class="p-2"><%= f.submit "更新", class: "btn btn-success" %></td>
@@ -65,7 +65,7 @@
   </tbody>
 </table>
 </div>
-<div class="col-md-3 offset-md-1">
+<div class="col-md-3 offset-md-1" style="position: fixed; bottom: 70px; right: 0;">
   <table>
     <tr>
   <th class="p-1" align="right">商品合計</th>
@@ -77,7 +77,7 @@
   </tr>
   <tr>
   <th class="p-1">請求金額合計</th> 
-  <td class="p-1" align="right"><%= number_with_delimiter(@order.total_price) %>円</td>
+  <th class="p-1" align="right"><%= number_with_delimiter(@order.total_price) %>円</th>
   </tr>
   </table>
 </div>
