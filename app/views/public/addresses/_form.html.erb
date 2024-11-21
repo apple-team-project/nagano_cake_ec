@@ -8,20 +8,37 @@
   </div>
 <% end %>
 
-<%= form_with model: address, local: true do |f| %>
-  <div>
-    <%= f.label :post_code, "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :post_code, placeholder: "0000000" %>
+<div class="container-fluid mt-5">
+  <%= form_with(model: address, 
+              url: address.new_record? ? addresses_path : address_path(address), 
+              method: address.new_record? ? :post : :patch, 
+              local: true) do |f| %>
+  <div class="row">
+    <div class = "col-2 offset-1">
+      <%= f.label :post_code, "郵便番号(ハイフンなし)" %>
+    </div>
+    <div class = "col-3">
+      <%= f.text_field :post_code, placeholder: "0000000" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
+  <div class="row mt-3">
+    <div class = "col-2 offset-1">
+      <%= f.label :address, "住所" %>
+    </div>
+    <div class="col-9">
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", style: "width: 50%;" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :name, "宛名" %>
-    <%= f.text_field :name, placeholder: "令和道子" %>
+  <div class="row mt-3">
+    <div class="col-2 offset-1">
+      <%= f.label :name, "宛名" %>
+    </div>
+    <div class = "col-3">
+      <%= f.text_field :name, placeholder: "令和道子" %>
+    </div>
+    <div class = "col-1 offset-2">
+      <%= f.submit address.new_record? ? "新規登録" : "変更内容を保存", class: "btn btn-success" %>
+    </div>
   </div>
-  <div>
-    <%= f.submit address.new_record? ? "新規登録" : "変更内容を保存", class: "btn btn-success" %>
-  </div>
-<% end %>
+  <% end %>
+</div>
