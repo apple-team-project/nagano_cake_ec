@@ -1,44 +1,50 @@
-<h4><%=@customer.full_name %>さんの会員詳細</h4>
-<table>
-<tr>
-<td>会員ID</td>
-<td><%=@customer.id %></td>
-</tr>
-<tr>
-<td>氏名</td>
-<td><%=@customer.family_name %> <%=@customer.first_name %></td>
-</tr>
-<tr>
-<td>フリガナ</td>
-<td><%=@customer.family_name_kana %> <%=@customer.first_name_kana %></td>
-</tr>
-<tr>
-<td>郵便番号</td>
-<td><%=@customer.post_code %></td>
-</tr>
-<tr>
-<td>住所</td>
-<td><%=@customer.address %></td>
-</tr>
-<tr>
-<td>電話番号</td>
-<td><%=@customer.phone_number %></td>
-</tr>
-<tr>
-<td>メールアドレス</td>
-<td><%=@customer.email %></td>
-</tr>
-<tr>
-<td>会員ステータス</td>
-<td>
-<% if @customer.is_active==true %>
-有効
-<% else %>
-退会
-<% end %>
-</td>
-<%=link_to "編集する",edit_admin_customer_path(@customer) %>
-<%=link_to "注文履歴一覧を見る","/" %>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+        <span style="background-color: rgba(226,226,226,0.8); font-size: 1.3em; padding: 0 20px; margin-left: 50px;"><%=@customer.full_name %>さんの会員詳細</span>
+        <table class="w-75 mt-3">
+        <tr>
+        <td class="p-2">会員ID</td>
+        <td class="p-2"><%=@customer.id %></td>
+        </tr>
+        <tr>
+        <td class="p-2">氏名</td>
+        <td class="p-2"><%=@customer.full_name %></td>
+        </tr>
+        <tr>
+        <td class="p-2">フリガナ</td>
+        <td class="p-2"><%=@customer.family_name_kana %> <%=@customer.first_name_kana %></td>
+        </tr>
+        <tr>
+        <td class="p-2">郵便番号</td>
+        <td class="p-2"><%=@customer.post_code %></td>
+        </tr>
+        <tr>
+        <td class="p-2">住所</td>
+        <td class="p-2"><%=@customer.address %></td>
+        </tr>
+        <tr>
+        <td class="p-2">電話番号</td>
+        <td class="p-2"><%=@customer.phone_number %></td>
+        </tr>
+        <tr>
+        <td class="p-2">メールアドレス</td>
+        <td class="p-2"><%=@customer.email %></td>
+        </tr>
+        <tr>
+        <td class="p-2">会員ステータス</td>
+        <td class="p-2">
+        <% if @customer.is_active==true %>
+        <span style="color: rgba(35,119,0,1);">有効</span>
+        <% else %>
+        <span style="color: gray;">退会</span>
+        <% end %>
+        </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td class="p-2"><%=link_to "編集する",edit_admin_customer_path(@customer),class: "btn btn-success" %></td>
+       <td class="p-2"><%=link_to "注文履歴一覧を見る",admin_root_path,class: "btn btn-primary" %></td>
 
 
 
