@@ -4,12 +4,12 @@ class Admin::OrderDetailsController < ApplicationController
 
     if @order_detail.update(order_detail_params)
       flash[:notice] = '制作ステータスを更新しました。'
-      redirect_to request.referer
+      
     else
       flash[:alert] = '更新に失敗しました。'
     end
 
-    #redirect_to admin_order_path(@order_detail.order)
+    redirect_to request.referer
     
   end
 
