@@ -1,7 +1,9 @@
 class Admin::OrdersController < ApplicationController
+
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @orders = Order.page(params[:page]).per(10) # 1ページ10件
   end
    
   def update
