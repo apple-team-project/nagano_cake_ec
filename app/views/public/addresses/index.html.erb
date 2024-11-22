@@ -1,26 +1,37 @@
-<div>配送先登録/一覧</div>
+<div class = "container mt-5">
+  <div class="row">
+    <h4 class = "col-3 text-center" style = "background-color: #DDDDDD;">配送先登録/一覧</h4>
+  </div>
+</div> 
 
 <%= render 'form', address: @address %>
 
-<table class="table">
-  <tr>
-    <thead>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-      <th></th>
-    </thead>
-  </tr>
-  <% @addresses.each do |address| %>
-    <tr>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <table class="table table-bordered col-8 offset-1">
+      <thead>
+        <tr>
+          <th style="background-color: #DDDDDD;">郵便番号</th>
+          <th style="background-color: #DDDDDD;">住所</th>
+          <th style="background-color: #DDDDDD;">宛名</th>
+          <th style="background-color: #DDDDDD;"></th>
+        </tr>
+      </thead>
       <tbody>
-        <td><%= address.post_code %></td>
-        <td><%= address.address %></td>
-        <td><%= address.name %></td>
-        <td><%= link_to "編集する", edit_address_path(address), class: "btn btn-succes" %></td>
-        <td><%= link_to "削除する", address_path(address), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %></td>
+        <% @addresses.each do |address| %>
+        <% if address.id.present? %>
+          <tr>
+            <td class = "col-1"><%= address.post_code %></td>
+            <td class = "col-3"><%= address.address %></td>
+            <td class = "col-1"><%= address.name %></td>
+            <td class = "col-2 text-center">
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
+              <%= link_to "削除する", address_path(address), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+        <% end %>
       </tbody>
-    </tr>
-  <% end %>
-</table>
-
+    </table>
+  </div>
+</div>

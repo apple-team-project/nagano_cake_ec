@@ -11,10 +11,12 @@ class Admin::OrdersController < ApplicationController
  
     if @order.update(order_params)
       flash.now[:notice] = '注文ステータスを更新しました。'
+      
     else
       flash.now[:alert] = '更新に失敗しました。'
     end
-      redirect_to admin_order_path(@order)
+      
+    redirect_to request.referer
   end
 
  private
