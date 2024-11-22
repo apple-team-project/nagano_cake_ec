@@ -14,7 +14,7 @@
         <td><%= order.created_at.strftime('%Y-%m-%d %H:%M') %></td>
         <td><%= order.customer.full_name %></td>
         <td><%= order.total_amoount %></td>
-        <td><%= order.status %></td>
+        <td><%= I18n.t("enums.order.status.#{order.status}") %></td>
        </tr>
      <% end %>
     </tbody>

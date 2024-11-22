@@ -1,19 +1,64 @@
-<h4>商品新規登録</h4>
-<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-  <%= f.label:item_image,"商品画像" %>
-  <%= f.file_field:item_image,accept: "image/*" %>
-  <%= f.label:name,"商品名" %>
-  <%= f.text_field:name,placeholder: "商品名" %>
-  <%= f.label:description,"商品説明" %>
-  <%= f.text_area:description,placeholder: "ここに説明文を記述します" %>
-  <%= f.label:genre_id,"ジャンル" %>
-  <%= f.select:genre_id,Genre.all.collect{|genre| [genre.name,genre.id]}, { prompt: "選択してください" } %>
-  <%= f.label:price,"税抜価格" %>
-  <%= f.text_field:price,placeholder: "1000" %>円
-  <%= f.label:is_active,"販売ステータス" %>
-  <%= f.radio_button:is_active,true %>
-  <%= f.label:is_active_true,"販売中" %>
-  <%= f.radio_button:is_active,false %>
-  <%= f.label:is_active_false,"販売停止中" %>
-  <%= f.submit "新規登録" %>
-<% end %>
+<div class="col-md-12 mt-4">
+  <div class="container mt-5">
+    <div class="row">
+      <h4 class="col-2 text-center" style="background-color: #DDDDDD;">商品新規登録</h4>
+    </div>
+  </div> 
+  <div class="container d-flex justify-content-center">
+    <%= form_with model: @item, url: admin_items_path, method: :post, local: true, class: "form-group mt-4" do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td class="w-25"><%= f.label :item_image, "商品画像", class: "form-label" %></td>
+          <td>
+            <%= f.file_field :item_image, accept: "image/*" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :name, "商品名", class: "form-label" %></td>
+          <td>
+            <%= f.text_field :name, placeholder: "商品名", class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :description, "商品説明", class: "form-label" %></td>
+          <td>
+            <%= f.text_area :description, placeholder: "ここに説明文を記述します", class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :genre_id, "ジャンル", class: "form-label" %></td>
+          <td>
+            <%= f.select :genre_id, Genre.all.collect { |genre| [genre.name, genre.id] }, { prompt: "選択してください" }, class: "form-select" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :price, "税抜価格", class: "form-label" %></td>
+          <td>
+            <div class="input-group">
+              <%= f.text_field :price, placeholder: "1000", class: "form-control" %>
+              <span>円</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-50"><%= f.label :is_active, "販売ステータス", class: "form-label" %></td>
+          <td>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, true, class: "form-check-input", id: "active_true" %>
+              <%= f.label :is_active_true, "販売中", class: "form-check-label", for: "active_true" %>
+            </div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, false, class: "form-check-input", id: "active_false" %>
+              <%= f.label :is_active_false, "販売停止中", class: "form-check-label", for: "active_false" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center">
+            <%= f.submit "新規登録", class: "btn btn-success w-50" %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
