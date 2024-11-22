@@ -21,9 +21,9 @@
         <% @addresses.each do |address| %>
         <% if address.id.present? %>
           <tr>
-            <td class = "col-1"><%= address.post_code %></td>
-            <td class = "col-3"><%= address.address %></td>
-            <td class = "col-1"><%= address.name %></td>
+            <td class = "col-1 align-middle"><%= address.post_code %></td>
+            <td class = "col-3 align-middle"><%= address.address %></td>
+            <td class = "col-1 align-middle"><%= address.name %></td>
             <td class = "col-2 text-center">
               <%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
               <%= link_to "削除する", address_path(address), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %>
