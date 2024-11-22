@@ -2,7 +2,15 @@
               url: genre.new_record? ? admin_genres_path : admin_genre_path(genre), 
               method: genre.new_record? ? :post : :patch,
               local: true do |f| %>
-  <%= f.label:name, "ジャンル名" %>
-  <%= f.text_field:name, placeholder: "ジャンル名" %>
-  <%= f.submit genre.new_record? ? "新規登録" : "変更を保存", class: "btn" %>
+  <div class="d-flex align-items-center">
+    <div class="col-md-4 me-5">
+      <%= f.label :name, "ジャンル名", class: "form-label" %>
+    </div>
+    <div class="col-md-8 me-5 flex-grow-1">
+      <%= f.text_field :name, placeholder: "ジャンル名", class: "form-control" %>
+    </div>
+    <div class="col-md-4 me-5">
+      <%= f.submit genre.new_record? ? "新規登録" : "変更を保存", class: "btn btn-success" %>
+    </div>
+  </div>
 <% end %>
