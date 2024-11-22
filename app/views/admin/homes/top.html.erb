@@ -21,7 +21,7 @@
        </td>
         <td><%= order.customer.full_name %></td>
         <td><%= order.total_amount %></td> 
-        <td>I18n.t("enums.order.status.#{order.status}")</td>
+        <td><%=I18n.t("enums.order.status.#{order.status}")%></td>
       </tr>
     <% end %>
   </tbody>
