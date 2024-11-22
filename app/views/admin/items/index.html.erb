@@ -1,26 +1,41 @@
-<h4>商品一覧</h4>
-<table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </tr>
-  <% @items.each do |item| %>
-  <tr>
-    <td><%= item.id %></td>
-    <td><%= link_to item.name,admin_item_path(item) %></td>
-    <td><%= item.price %></td>
-    <td><%= item.genre.name %></td>
-    <td>
-      <% if item.is_active == true %>
-        販売中
-      <% else %>
-        販売停止中
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-  </table>
-  <%= paginate @items %>
+<div class="container mt-4">
+  <div class="row">
+    <h4 class="col-2 text-center" style="background-color: #DDDDDD;">商品一覧</h4>
+    
+    <%= link_to new_admin_item_path, class: "btn btn-primary rounded-circle p-0 d-flex justify-content-center align-items-start ml-auto", style: "width:2rem;height:2rem;text-align:center;font-size:1.5rem;padding-top:0.25rem;" do %>
+      ＋
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <table class="table table-striped col-md-12">
+      <thead>
+        <tr>
+          <th style="background-color: #DDDDDD;">商品ID</th>
+          <th style="background-color: #DDDDDD;">商品名</th>
+          <th style="background-color: #DDDDDD;">税抜価格</th>
+          <th style="background-color: #DDDDDD;">ジャンル</th>
+          <th style="background-color: #DDDDDD;">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+              <% if item.is_active %>
+                <span style="color: green; font-weight: bold;">販売中</span>
+              <% else %>
+                <span style="color: red; font-weight: bold;">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @items %>
+  </div>
+</div>
