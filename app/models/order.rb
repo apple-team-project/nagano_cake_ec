@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_many :items, through: :order_details, dependent: :destroy
   # 注文個数（amountの合計）を計算するメソッド
-  def total_amoount
+  def total_amount
     order_details.sum(:amount)
   end
 

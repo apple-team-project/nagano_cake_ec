@@ -3,7 +3,7 @@
   <div class="col-md-8 mt-4">
    <span style="background-color: rgba(226,226,226,0.8); font-size: 1.4em; padding: 0 20px; margin-left: 50px;">管理者ログイン</span>
 
-   <%= form_with model: [:admin, Admin.new], url: admin_session_path, local: true do |f| %>
+   <%= form_with(model: resource, url: session_path(resource_name), local: true) do |f| %>
     <table class="mt-3 w-100">
      <tr>
        <td align="center"><%= f.label :email,"メールアドレス" %></td>
