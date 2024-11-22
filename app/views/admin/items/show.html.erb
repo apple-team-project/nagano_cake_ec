@@ -1,37 +1,47 @@
-<div class="container">
-<div class="row">
-<div class="col">
-<%=image_tag @item.get_item_image(300,300) %>
-</div>
-<div class="col">
-<table>
-<tr>
-<td>商品名</td>
-<td><%=@item.name %></td>
-</tr>
-<tr>
-<td>商品説明</td>
-<td><%=@item.description %></td>
-</tr>
-<tr>
-<td>ジャンル</td>
-<td><%=@genre.name %></td>
-</tr>
-<tr>
-<td>税込価格<br>(税抜価格)</td>
-<td><%=(@item.price*1.1).floor %>
-<span>(</span><%=@item.price %><span>)円</span></td>
-</tr>
-<tr>
-<td>販売ステータス</td>
-<td><% if @item.is_active==true %>
-販売中
-<% else %>
-販売停止中
-<% end %></td>
-</tr>
-</table>
-<%=link_to "編集する",edit_admin_item_path(@item),class: "btn" %>
-</div>
-</div>
+<div class="container mt-5">
+  <div class="row">
+    <h4 class="col-2 text-center" style="background-color: #DDDDDD;">商品詳細</h4>
+  </div>
+  <div class="row mt-4">
+    <!-- 商品画像 -->
+    <div class="col-md-4 text-center">
+      <%= image_tag @item.get_item_image(300, 300), class: "img-fluid" %>
+    </div>
+
+    <!-- 商品情報 -->
+    <div class="col-md-8">
+      <table class="table table-borderless">
+        <tr>
+          <td style="font-weight: bold;">商品名</td>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">商品説明</td>
+          <td><%= @item.description %></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">ジャンル</td>
+          <td><%= @genre.name %></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">税込価格<br>(税抜価格)</td>
+          <td>
+            <%= (@item.price * 1.1).floor %>円
+            <span>(税抜価格: <%= @item.price %>円)</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">販売ステータス</td>
+          <td>
+            <% if @item.is_active %>
+              <span style="color: green; font-weight: bold;">販売中</span>
+            <% else %>
+              <span style="color: red;">販売停止中</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success btn-lg mt-3", style: "padding: 10px 20px;" %>
+    </div>
+  </div>
 </div>
