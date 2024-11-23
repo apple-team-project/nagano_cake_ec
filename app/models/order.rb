@@ -2,13 +2,22 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details, dependent: :destroy
   has_many :items, through: :order_details, dependent: :destroy
+
+  validates :payment_method, presence: true
+  validates :post_code, presence: true
+  validates :address, presence: true
+  validates :name, presence: true
+  validates :shipping_fee, presence: true
+  validates :total_payment, presence: true
+  validates :status, presence: true
+
+  enum payment_method: { credit_card: 0, cash: 1 }
+  enum status: { payment_waiting: 0, payment_confirmation: 1, making: 2, delivery_preparation: 3, delivered: 4 }
+
   # 注文個数（amountの合計）を計算するメソッド
   def total_amount
     order_details.sum(:amount)
   end
-
-  enum payment_method: { credit_card: 0, cash: 1 }
-  enum status: { payment_waiting: 0, payment_confirmation: 1, making: 2, delivery_preparation: 3, delivered: 4 }
 
   def total_price
     shipping_fee + total_payment
