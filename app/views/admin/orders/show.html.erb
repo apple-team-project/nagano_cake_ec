@@ -7,7 +7,7 @@
 <table class="mt-3">
   <tr>
     <th class="p-1">購入者</th>
-    <td class="p-1"><%= @order.customer.full_name %></td>
+    <td class="p-1"><%= link_to @order.customer.full_name,admin_customer_path(@order.customer) %></td>
   </tr>
   <tr>
     <th class="p-1">注文日</th>
