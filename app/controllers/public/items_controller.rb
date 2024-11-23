@@ -1,12 +1,13 @@
-class Public::ItemsController < ApplicationController
+class Public::ItemsController < Public::ApplicationController
+  skip_before_action :authenticate_customer!
 
- def index
+  def index
   @items = Item.page(params[:page])
- end
+  end
 
- def show
+  def show
   @item = Item.find(params[:id])
-  @cart_item = current_customer.cart_items.new
- end 
+  @cart_item = CartItem.new
+  end 
 
 end 
