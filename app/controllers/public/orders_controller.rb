@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :ensure_cart_has_items, only: [:new, :create]
   def new
     @order = current_customer.orders.build
   end
@@ -59,5 +60,11 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:payment_method, :post_code, :address, :name, :shipping_fee, :total_payment)
+  end
+
+  def ensure_cart_has_items
+    if current_customer.cart_items.empty?
+      redirect_to cart_items_path
+    end
   end
 end
