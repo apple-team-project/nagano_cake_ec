@@ -1,6 +1,6 @@
 
 class Public::OrdersController < Public::ApplicationController
-　before_action :ensure_cart_has_items, only: [:new, :create]
+ before_action :ensure_cart_has_items, only: [:new, :create]
   def new
     @order = current_customer.orders.build
   end
