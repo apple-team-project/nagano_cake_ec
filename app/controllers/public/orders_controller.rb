@@ -1,4 +1,4 @@
-class Public::OrdersController < ApplicationController
+class Public::OrdersController < Public::ApplicationController
   def new
     @order = current_customer.orders.build
   end
