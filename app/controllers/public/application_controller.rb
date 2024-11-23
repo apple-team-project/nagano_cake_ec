@@ -5,5 +5,4 @@ class Public::ApplicationController < ApplicationController
     root_path
   end
 
-  def 
 end
