@@ -14,6 +14,8 @@ class Order < ApplicationRecord
   enum payment_method: { credit_card: 0, cash: 1 }
   enum status: { payment_waiting: 0, payment_confirmation: 1, making: 2, delivery_preparation: 3, delivered: 4 }
 
+  after_update :update_making_status, if: :saved_change_to_status?
+
   # 注文個数（amountの合計）を計算するメソッド
   def total_amount
     order_details.sum(:amount)
@@ -21,5 +23,15 @@ class Order < ApplicationRecord
 
   def total_price
     shipping_fee + total_payment
+  end
+
+  private
+
+  def update_making_status
+    return unless order_details
+
+    if status == 'payment_confirmation'
+      order_details.update(making_status: 'make_pending')
+    end
   end
 end
