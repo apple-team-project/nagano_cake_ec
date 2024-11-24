@@ -7,8 +7,10 @@
     <div class="item_collection d-flex flex-wrap">
     <% @items.each do |item| %>
     <div class="m-2">
-    <%=image_tag item.get_item_image(200,200),style: 'width: 200px; height: 200px; object-fit: cover;' %><br>
-    <%=link_to item.name,item_path(item) %><br>
+      <%=link_to item_path(item) do%>
+    <%=image_tag item.get_item_image(200,200),style: 'width: 200px; height: 200px; object-fit: cover;' %>
+    <% end %><br>
+    <%= item.name %><br>
     ¥<%=item.price %>
     </div>
     <% end %>
